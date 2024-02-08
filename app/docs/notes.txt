@@ -1,0 +1,19 @@
+Here's the original file structure suggested by ChatGPT
+
+your_project/
+|-- app/
+|   |-- static/
+|   |-- templates/
+|   |-- __init__.py
+|   |-- routes/
+|       |-- __init__.py
+|       |-- main_routes.py
+|-- config/
+|   |-- __init__.py
+|   |-- config.py
+|-- migrations/
+|-- tests/
+|-- venv/
+|-- .env
+|-- .gitignore
+|-- run.py
