@@ -2,8 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
  
 db = SQLAlchemy()
  
-class InfoModel(db.Model):
-    __tablename__ = 'info_table'
+class RecordsModel(db.Model):
+    __tablename__ = 'records'
  
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String())
