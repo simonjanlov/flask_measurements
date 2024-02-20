@@ -17,3 +17,50 @@ your_project/
 |-- .env
 |-- .gitignore
 |-- run.py
+
+
+Here's how to use flask-migate according to ChatGPT
+
+1. Initialize Migration Repository: 
+
+This command initializes a migration repository, which is a directory where Flask-Migrate will store migration scripts.
+
+   ```bash
+   flask db init
+   ```
+
+2. Generate Migration Script: 
+
+This command generates a new migration script based on changes detected in your SQLAlchemy models.
+
+   ```bash
+   flask db migrate -m "description of migration"
+   ```
+
+3. Apply Migrations: 
+
+This command applies pending migrations to the database, updating the database schema according to the migration scripts.
+
+   ```bash
+   flask db upgrade
+   ```
+
+4. Downgrade Migrations: 
+
+This command rolls back the most recent migration, reverting the database schema to its state before the migration was applied.
+
+   ```bash
+   flask db downgrade
+   ```
+
+5. Show Migration History: 
+
+This command displays a list of migrations and their status (applied or pending).
+
+   ```bash
+   flask db history
+   ```
+
+These are the basic commands you'll use with Flask-Migrate to manage database migrations in your Flask application. 
+Each command is executed as a Flask CLI command prefixed with `flask db`, where `db` is the name of your Flask-Migrate instance. 
+You can also add more specific options and flags to these commands as needed, depending on your requirements and the state of your migrations.

@@ -9,6 +9,7 @@ from app.models.records import db, RecordsModel
 
 load_dotenv()
 
+# Application factory
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = (
@@ -16,9 +17,11 @@ def create_app():
         f"@{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    # print(app.config['SQLALCHEMY_DATABASE_URI'])
 
+    # Setting up database configuration
     db.init_app(app)
+
+    # Initializing flask-migrate
     migrate = Migrate(app, db)
 
     app.register_blueprint(main_bp)
@@ -28,8 +31,9 @@ def create_app():
 
 app = create_app()
 
-with app.app_context():
-    try:
-        db.create_all()
-    except Exception as e:
-        print(f"Error creating database tables: {e}")
+# with app.app_context():
+#     try:
+#         db.create_all()
+#         print("Table(s) created")
+#     except Exception as e:
+#         print(f"Error creating database tables: {e}")
