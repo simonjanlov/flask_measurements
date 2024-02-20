@@ -1,6 +1,8 @@
 import os
+import sys
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import OperationalError
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 from app.routes.main_routes import main_bp
@@ -18,22 +20,28 @@ def create_app():
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Setting up database configuration
+    # Set up database configuration
     db.init_app(app)
 
-    # Initializing flask-migrate
+    # Initialize flask-migrate
     migrate = Migrate(app, db)
-
-    app.register_blueprint(main_bp)
     
+    # Test that the database connection works
+    try:    
+        with app.app_context():
+            RecordsModel.query.first()
+            print("\nSuccessfully conncted to database")
+    except OperationalError as e:
+        # Terminate the program if the database connection is faulty
+        print(f"\nInvalid database connection settings: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print("Unexpected error (Database connection):", e)
+        sys.exit(1)
+    
+    app.register_blueprint(main_bp)
+
     return app
 
 
 app = create_app()
-
-# with app.app_context():
-#     try:
-#         db.create_all()
-#         print("Table(s) created")
-#     except Exception as e:
-#         print(f"Error creating database tables: {e}")
