@@ -22,6 +22,7 @@ def db_connect(connection):
 
         # Execute a SQL query
         cursor.execute("SELECT * FROM users;")
+        # cursor.execute("SELECT current_database();")
 
         # Fetch result
         record = cursor.fetchall()
