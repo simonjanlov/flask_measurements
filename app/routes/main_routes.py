@@ -11,3 +11,7 @@ def home():
 @main_bp.route("/about")
 def about():
     return render_template("pages/about.html")
+
+@main_bp.route("/submit_weight")
+def submit_weight():
+    return render_template("pages/submit_weight.html")
