@@ -12,10 +12,6 @@ def home():
 def about():
     return render_template("pages/about.html")
 
-# @main_bp.route("/weight_form")
-# def weight_form():
-#     return render_template("pages/weight_form.html")
-
 @main_bp.route("/weight_form", methods = ['POST', 'GET'])
 def weight_form():
     if request.method == 'GET':
