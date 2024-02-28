@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from app.models.records import RecordsModel
+from app.models import db, RecordsModel
 from app.utils.graph_generator import generate_graph
 from collections import OrderedDict
 
@@ -20,37 +20,34 @@ def weight_form():
         return render_template("pages/weight_form.html")
      
     if request.method == 'POST':
-        # Create an ordered dict and convert values into floats
+        # Create an ordered dict to hold the form data
         ordered_data = OrderedDict()
 
+        # As long as the data can be converted to type float, add to ordered_data
         try:
-            # Move all items except "week_10" to the ordered_data
             for key, value in request.form.items():
                 if key != 'week_10':
-                    ordered_data[key] = float(value)
-            # Add "week_10" at the end of ordered_data
+                    # Allow empty input
+                    if value == "":
+                        ordered_data[key] = 0.0
+                    else:
+                        ordered_data[key] = float(value)
+            # Add "week_10" at the end of ordered_data (to ensure that week_10 comes at the end and not between week_1 and week_2)
             if 'week_10' in request.form:
-                ordered_data['week_10'] = float(request.form['week_10'])
+                # Allow empty input
+                    if value == "":
+                        ordered_data['week_10'] = 0.0
+                    else:
+                        ordered_data['week_10'] = float(request.form['week_10'])
         except ValueError as e:
             return "Invalid input"
 
-        # Create an OrderedDict to preserve the order of insertion
-        # ordered_data = OrderedDict()
-        # # Move all items except "week_10" to the ordered_data
-        # for key, value in request.form.items():
-        #     if key != 'week_10':
-        #         ordered_data[key] = value
-        # # Add "week_10" at the end of ordered_data
-        # if 'week_10' in request.form:
-        #     ordered_data['week_10'] = request.form['week_10']
-
-        # # Print the ordered data for verification
-        # for key, value in ordered_data.items():
-        #     print(f"{key}: {value}")
-
         # # Store in database
         weight_data = RecordsModel(*list(ordered_data.values()))
-        print(weight_data)
-            
+        db.session.add(weight_data)
+        db.session.commit()
+
+        # print(weight_data)
+          
         # Do something with the ordered data, such as processing the form data
         return 'Form data processed successfully!'
