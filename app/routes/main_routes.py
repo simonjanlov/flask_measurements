@@ -42,12 +42,13 @@ def weight_form():
         except ValueError as e:
             return "Invalid input"
 
-        # # Store in database
+        # Store in database
         weight_data = RecordsModel(*list(ordered_data.values()))
         db.session.add(weight_data)
         db.session.commit()
 
-        # print(weight_data)
+        # TO DO: Add functionality so that a record is updated by the values in the form that are not empty(0.0)?
+        # Decide how to design the functionality overall - should a user only be able to have one weight record each?
           
         # Do something with the ordered data, such as processing the form data
         return 'Form data processed successfully!'
