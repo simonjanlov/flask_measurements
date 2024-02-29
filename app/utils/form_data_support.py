@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 def weight_input_transform(form_data):
     """
-    Add description here.
+    Takes the weight form data and returns an ordered dict with values as float type.
     """
     
     ordered_data = OrderedDict()
