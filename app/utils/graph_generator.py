@@ -25,3 +25,7 @@ def generate_graph():
     # return buf.getvalue()
 
     plt.close()
+
+def generate_weight_graph(weight_data):
+    # Generate user graph here
+    pass
