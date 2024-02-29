@@ -43,7 +43,7 @@ def weight_form():
         else:
             # Commit the transaction if no exceptions occurred
             db.session.commit()
-            # generate_weight_graph(weight_data)
+            generate_weight_graph(list(ordered_data.values()))
 
         # TO DO: Add functionality so that a record is updated by the values in the form that are not empty(0.0)?
         # Decide how to design the functionality overall - should a user only be able to have one weight record each?
