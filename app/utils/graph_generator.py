@@ -29,18 +29,30 @@ def generate_graph():
 def generate_weight_graph(weight_data):
     x_values = list(range(len(weight_data)))
     y_values = weight_data
+    name = "User"
 
     plt.plot(x_values, y_values)
-    plt.xlabel('X-axis label')
-    plt.ylabel('Y-axis label')
-    plt.title('Example Matplotlib Graph')
+    custom_labels = ['Starting point',
+                    'Week 1', 
+                    'Week 2', 
+                    'Week 3', 
+                    'Week 4',
+                    'Week 5', 
+                    'Week 6', 
+                    'Week 7', 
+                    'Week 8',
+                    'Week 9', 
+                    'Week 10']
+    plt.xticks(x_values, custom_labels)
+    plt.xlabel('')
+    plt.ylabel('Weight(Kg)')
+    plt.title(f"{name}'s Weight Progress")
 
     # Save the graph to a file
     plt.savefig(os.path.join('app', 'static', 'img', 'user_graph.png'))
-
     
 
 
 if __name__=="__main__":
-    weight_data = [3.0, 4.0, 5.0, 6.0, 5.0, 4.0, 5.0, 6.0, 4.0, 6.0, 5.0]
+    weight_data = [66.0, 65.0, 65.5, 65.3, 64.8, 64.0, 64.0, 63.5, 63.0, 63.0, 62.0]
     generate_weight_graph(weight_data)

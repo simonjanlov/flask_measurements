@@ -49,4 +49,5 @@ def weight_form():
         # Decide how to design the functionality overall - should a user only be able to have one weight record each?
           
         # TO DO: Return render_template with the page showing the graph?
-        return 'Form data processed successfully!'
+        # return 'Form data processed successfully!'
+        return render_template("pages/user_graph.html")
