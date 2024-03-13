@@ -39,7 +39,7 @@ def weight_form():
         except Exception as e:
             print(f"An error occurred: {e}")
             db.session.rollback()
-            return "Error" # We might return render_template("error_page.html", message=str(e))
+            return render_template("pages/error.html", message=str(e))
         else:
             # Commit the transaction if no exceptions occurred
             db.session.commit()
