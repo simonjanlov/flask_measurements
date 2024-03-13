@@ -26,8 +26,9 @@ def weight_form():
 
         # Check ordered_data for correct type
         if not isinstance(ordered_data, OrderedDict):
-            print("Error: Input must be an OrderedDict")
-            return "Error" # Might return render_template("error_page.html", message="the above error message")
+            error_message = "Error: Input must be an OrderedDict"
+            print(error_message)
+            return render_template("pages/error.html", message=error_message)
 
         # Begin a database transaction
         db.session.begin()
