@@ -43,10 +43,11 @@ def generate_weight_graph(weight_data):
                     'Week 8',
                     'Week 9', 
                     'Week 10']
-    plt.xticks(x_values, custom_labels)
+    plt.xticks(x_values, custom_labels, rotation=30, ha='right', rotation_mode='anchor') # tweak this to that the labels fit (45 degrees tilt?)
     plt.xlabel('')
     plt.ylabel('Weight(Kg)')
     plt.title(f"{name}'s Weight Progress")
+    plt.tight_layout()
 
     # Save the graph to a file
     plt.savefig(os.path.join('app', 'static', 'img', 'user_graph.png'))
