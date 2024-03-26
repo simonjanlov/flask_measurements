@@ -27,11 +27,18 @@ def generate_graph():
     plt.close()
 
 def generate_weight_graph(weight_data):
-    x_values = list(range(len(weight_data)))
-    y_values = weight_data
+    weeks = list(range(len(weight_data)))
+    weights = weight_data
     name = "User"
 
-    plt.plot(x_values, y_values)
+    # Find the last week with a non-zero weight value
+    last_non_zero_week = max(weeks[:weights.index(0)]) if 0 in weights else weeks[-1]
+
+    # Truncate the data
+    truncated_weeks = weeks[:last_non_zero_week + 1]
+    truncated_weights = weights[:last_non_zero_week + 1]
+
+    plt.plot(truncated_weeks, truncated_weights)
     custom_labels = ['Starting point',
                     'Week 1', 
                     'Week 2', 
@@ -43,7 +50,8 @@ def generate_weight_graph(weight_data):
                     'Week 8',
                     'Week 9', 
                     'Week 10']
-    plt.xticks(x_values, custom_labels, rotation=30, ha='right', rotation_mode='anchor') # tweak this to that the labels fit (45 degrees tilt?)
+    plt.xlim(-0.5, len(weeks) -0.5) # Sets the x-axis limits to ensure it extends to all 11 weeks
+    plt.xticks(weeks, custom_labels, rotation=30, ha='right', rotation_mode='anchor')
     plt.xlabel('')
     plt.ylabel('Weight(Kg)')
     plt.title(f"{name}'s Weight Progress")
@@ -55,5 +63,5 @@ def generate_weight_graph(weight_data):
 
 
 if __name__=="__main__":
-    weight_data = [66.0, 65.0, 65.5, 65.3, 64.8, 64.0, 64.0, 63.5, 63.0, 63.0, 62.0]
+    weight_data = [66.0, 65.0, 65.5, 65.3, 64.8, 64.0, 64.0, 63.5, 63.0, 63.0, 0]
     generate_weight_graph(weight_data)
