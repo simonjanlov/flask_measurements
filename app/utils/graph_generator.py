@@ -32,7 +32,14 @@ def generate_weight_graph(weight_data):
     name = "User"
 
     # Find the last week with a non-zero weight value
-    last_non_zero_week = max(weeks[:weights.index(0)]) if 0 in weights else weeks[-1]
+    if 0 in weights:
+        index_of_first_zero = weights.index(0)
+        if all(weight == 0 for weight in weights[index_of_first_zero:]):
+            last_non_zero_week = weeks[index_of_first_zero - 1]
+        else:
+            last_non_zero_week = weeks[-1]
+    else:
+        last_non_zero_week = weeks[-1]
 
     # Truncate the data
     truncated_weeks = weeks[:last_non_zero_week + 1]
@@ -63,5 +70,5 @@ def generate_weight_graph(weight_data):
 
 
 if __name__=="__main__":
-    weight_data = [66.0, 65.0, 65.5, 65.3, 64.8, 64.0, 64.0, 63.5, 63.0, 63.0, 0]
+    weight_data = [66.0, 65.0, 65.5, 65.3, 64.8, 64.0, 65.0, 63.5, 63.0, 0.0, 0.0]
     generate_weight_graph(weight_data)
