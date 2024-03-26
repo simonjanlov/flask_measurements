@@ -64,3 +64,6 @@ This command displays a list of migrations and their status (applied or pending)
 These are the basic commands you'll use with Flask-Migrate to manage database migrations in your Flask application. 
 Each command is executed as a Flask CLI command prefixed with `flask db`, where `db` is the name of your Flask-Migrate instance. 
 You can also add more specific options and flags to these commands as needed, depending on your requirements and the state of your migrations.
+
+Simon's note: If starting over with the database (deleting the migrations folder and dropping the tables to start from scratch) 
+- there is another table that contains the mgration versions. This needs to be truncated. Else there will be an error when running flask db init.
