@@ -31,6 +31,9 @@ def generate_weight_graph(weight_data):
     weights = weight_data
     name = "User"
 
+    # TO DO - clean up 0 values in the middle
+    # TO DO - edit the following logic to work also for the opposite scenario, where the beginning contains only 0's
+
     # Find the last week with a non-zero weight value
     if 0 in weights:
         index_of_first_zero = weights.index(0)
