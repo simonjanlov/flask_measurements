@@ -8,9 +8,16 @@ This is a Flask web application that allows users to track their body measuremen
 - Visualization (line graph) of measurement trends over the 10 weeks
 - Allows for incomplete data in the submitted form (excludes leading and trailing null or 0, uses interpolation for missing middle values)
 
-## Possible enhancements
+## Planned features
 
 - User registration and authentication
 - Input and tracking of various body measurements (e.g., height, waist circumference, etc.)
 - Visualization of measurement trends over time
 - Personalized dashboard for each user to view their progress
+
+## Techniques
+
+- Flask
+- PostgreSQL with SQLAlchemy and flask migrate
+- Matplotlib
+- Data handling with pandas
