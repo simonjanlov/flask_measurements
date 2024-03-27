@@ -32,6 +32,20 @@ def generate_weight_graph(weight_data):
     weights = weight_data
     name = "User"
 
+    # Exclude leading or trailing 0-values from the plot
+    first_value_index = 0
+    
+    if 0 in weights:
+        while weights[first_value_index] == 0:
+            first_value_index += 1
+
+        while weights[-1] == 0:
+            weights.pop()
+
+    truncated_weights = weights[first_value_index:]
+    truncated_weeks = weeks[first_value_index:first_value_index + len(truncated_weights)]
+
+
     # TO DO - clean up 0 values in the middle
     # BELOW IS WORK IN PROGRESS
 
@@ -44,19 +58,20 @@ def generate_weight_graph(weight_data):
 
     # TO DO - edit the following logic to work also for the opposite scenario, where the beginning contains only 0's
 
-    # Find the last week with a non-zero weight value
-    if 0 in weights:
-        index_of_first_zero = weights.index(0)
-        if all(weight == 0 for weight in weights[index_of_first_zero:]):
-            last_non_zero_week = weeks[index_of_first_zero - 1]
-        else:
-            last_non_zero_week = weeks[-1]
-    else:
-        last_non_zero_week = weeks[-1]
+    # # Find the last week with a non-zero weight value
+    # if 0 in weights:
+    #     index_of_first_zero = weights.index(0)
+    #     if all(weight == 0 for weight in weights[index_of_first_zero:]):
+    #         last_non_zero_week = weeks[index_of_first_zero - 1]
+    #     else:
+    #         last_non_zero_week = weeks[-1]
+    # else:
+    #     last_non_zero_week = weeks[-1]
 
-    # Truncate the data
-    truncated_weeks = weeks[:last_non_zero_week + 1]
-    truncated_weights = weights[:last_non_zero_week + 1]
+    # # Truncate the data
+    # truncated_weeks = weeks[:last_non_zero_week + 1]
+    # truncated_weights = weights[:last_non_zero_week + 1]
+
 
     plt.plot(truncated_weeks, truncated_weights)
     custom_labels = ['Starting point',
@@ -84,5 +99,5 @@ def generate_weight_graph(weight_data):
 
 
 if __name__=="__main__":
-    weight_data = [66.0, 65.0, 65.5, 65.3, 64.8, 64.0, 65.0, 63.5, 63.0, 0.0, 0.0]
+    weight_data = [0.0, 0.0, 65.5, 64.3, 64.8, 63.0, 65.0, 63.5, 80.0, 0.0, 0.0]
     generate_weight_graph(weight_data)
