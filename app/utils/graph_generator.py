@@ -46,34 +46,14 @@ def generate_weight_graph(weight_data):
     truncated_weeks = weeks[first_value_index:first_value_index + len(truncated_weights)]
 
 
-    # TO DO - clean up 0 values in the middle
-    # BELOW IS WORK IN PROGRESS
+    # Clean up 0 values in the middle of the data using linear interpolation
+    df = pd.DataFrame({'weeks':truncated_weeks, 'weights':truncated_weights})
+    df.set_index('weeks', inplace=True)
+    df.replace(0, np.nan, inplace=True)
+    df['weights'] = df['weights'].interpolate(method='linear')
 
-    # df = pd.DataFrame({'weeks':weeks, 'weights':weights})
-    # df.set_index('weeks', inplace=True)
-    # df.replace(0, np.nan, inplace=True)
-    # df['weights'] = df['weights'].interpolate(method='linear')
-    # print(df)
-
-
-    # TO DO - edit the following logic to work also for the opposite scenario, where the beginning contains only 0's
-
-    # # Find the last week with a non-zero weight value
-    # if 0 in weights:
-    #     index_of_first_zero = weights.index(0)
-    #     if all(weight == 0 for weight in weights[index_of_first_zero:]):
-    #         last_non_zero_week = weeks[index_of_first_zero - 1]
-    #     else:
-    #         last_non_zero_week = weeks[-1]
-    # else:
-    #     last_non_zero_week = weeks[-1]
-
-    # # Truncate the data
-    # truncated_weeks = weeks[:last_non_zero_week + 1]
-    # truncated_weights = weights[:last_non_zero_week + 1]
-
-
-    plt.plot(truncated_weeks, truncated_weights)
+    # Create plot and save to .png file
+    plt.plot(df.index, df.weights)
     custom_labels = ['Starting point',
                     'Week 1', 
                     'Week 2', 
@@ -99,5 +79,5 @@ def generate_weight_graph(weight_data):
 
 
 if __name__=="__main__":
-    weight_data = [0.0, 0.0, 65.5, 64.3, 64.8, 63.0, 65.0, 63.5, 80.0, 0.0, 0.0]
+    weight_data = [0.0, 0.0, 63.5, 63.3, 62.0, 0.0, 65.0, 65.5, 63.0, 0.0, 0.0]
     generate_weight_graph(weight_data)
