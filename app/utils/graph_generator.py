@@ -1,6 +1,7 @@
 import matplotlib
 matplotlib.use('Agg')  # Set the backend to use Agg
 import matplotlib.pyplot as plt
+import pandas as pd
 import numpy as np
 import os
 
@@ -32,6 +33,15 @@ def generate_weight_graph(weight_data):
     name = "User"
 
     # TO DO - clean up 0 values in the middle
+    # BELOW IS WORK IN PROGRESS
+
+    # df = pd.DataFrame({'weeks':weeks, 'weights':weights})
+    # df.set_index('weeks', inplace=True)
+    # df.replace(0, np.nan, inplace=True)
+    # df['weights'] = df['weights'].interpolate(method='linear')
+    # print(df)
+
+
     # TO DO - edit the following logic to work also for the opposite scenario, where the beginning contains only 0's
 
     # Find the last week with a non-zero weight value
@@ -69,6 +79,7 @@ def generate_weight_graph(weight_data):
 
     # Save the graph to a file
     plt.savefig(os.path.join('app', 'static', 'img', 'user_graph.png'))
+    plt.close()
     
 
 
