@@ -44,7 +44,7 @@ def weight_form():
         else:
             # Commit the transaction if no exceptions occurred
             db.session.commit()
-            # generate_weight_graph(list(ordered_data.values()))
+            generate_weight_graph(list(ordered_data.values()))
             generate_weight_graph_gif(list(ordered_data.values()))
 
         # TO DO: Add functionality so that a record is updated by the values in the form that are not empty(0.0)?
