@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from app.models import db, RecordsModel
-from app.utils.graph_generator import generate_graph, generate_weight_graph
+from app.utils.graph_generator import generate_graph, generate_weight_graph, generate_weight_graph_gif
 from app.utils.form_data_support import weight_input_transform
 from collections import OrderedDict
 
@@ -44,7 +44,8 @@ def weight_form():
         else:
             # Commit the transaction if no exceptions occurred
             db.session.commit()
-            generate_weight_graph(list(ordered_data.values()))
+            # generate_weight_graph(list(ordered_data.values()))
+            generate_weight_graph_gif(list(ordered_data.values()))
 
         # TO DO: Add functionality so that a record is updated by the values in the form that are not empty(0.0)?
         # Decide how to design the functionality overall - should a user only be able to have one weight record each?

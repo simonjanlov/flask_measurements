@@ -168,14 +168,11 @@ def generate_weight_graph_gif(weight_data):
 
     with writer.saving(fig, gif_path, 100): # 100 is DPI of the image
         for i in range(len(plot_weeks)):
-
             l.set_data(plot_weeks[:i], plot_weights[:i])
             writer.grab_frame()
 
     plt.close()
     
-
-
 
 if __name__=="__main__":
     weight_data = [0.0, 0.0, 63.5, 63.3, 62.0, 0.0, 65.0, 65.5, 63.0, 0.0, 0.0]
