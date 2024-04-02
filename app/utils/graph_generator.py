@@ -69,6 +69,8 @@ def generate_weight_graph(weight_data):
                     'Week 10']
     plt.xlim(-0.5, len(weeks) -0.5) # Sets the x-axis limits to ensure it extends to all 11 weeks
     plt.xticks(weeks, custom_labels, rotation=30, ha='right', rotation_mode='anchor')
+    ytick_labels = ['{:.1f}'.format(val) for val in plt.yticks()[0]]
+    plt.yticks(plt.yticks()[0], ytick_labels)
     plt.xlabel('')
     plt.ylabel('Weight(Kg)')
     plt.title(f"{name}'s Weight Progress")
@@ -159,6 +161,8 @@ def generate_weight_graph_gif(weight_data):
     plt.xlim(-0.5, len(weeks) -0.5) # Sets the x-axis limits to ensure it extends to all 11 weeks
     plt.ylim(min(plot_weights)-2, max(plot_weights)+2)
     plt.xticks(weeks, custom_labels, rotation=30, ha='right', rotation_mode='anchor')
+    ytick_labels = ['{:.1f}'.format(val) for val in plt.yticks()[0]]
+    plt.yticks(plt.yticks()[0], ytick_labels)
     plt.xlabel('')
     plt.ylabel('Weight(Kg)')
     plt.title(f"{name}'s Weight Progress")
@@ -175,5 +179,5 @@ def generate_weight_graph_gif(weight_data):
     
 
 if __name__=="__main__":
-    weight_data = [0.0, 0.0, 63.5, 63.3, 62.0, 0.0, 65.0, 65.5, 63.0, 0.0, 0.0]
+    weight_data = [0.0, 0.0, 63.5, 63.3, 63.1, 0.0, 64.0, 63.2, 63.0, 0.0, 0.0]
     generate_weight_graph_gif(weight_data)
