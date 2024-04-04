@@ -29,5 +29,5 @@ Beyond the techniques mentioned above, I've during the project improved my skill
 - Working with environment variables
 - Working with a virtual python environment
 - The file- and folder structure of a Flask application
-- Using ChatGPT as a coding partner - working on prompting skills as well as critically evaluating suggestions and responses
+- Using ChatGPT as a coding partner - sharpening my prompting skills as well as critically evaluating suggestions and responses
 
