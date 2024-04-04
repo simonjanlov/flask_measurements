@@ -15,6 +15,7 @@ Created primarily as a way for me to practice and expand my skills with Python a
 - User registration and authentication
 - Input and tracking of various body measurements (e.g., height, waist circumference, etc.)
 - Personalized dashboard for each user to view their progress
+- More eye-cathing styling of the app
 
 ## Techniques
 
@@ -26,4 +27,7 @@ Created primarily as a way for me to practice and expand my skills with Python a
 Beyond the techniques mentioned above, I've during the project improved my skills with:
 
 - Working with environment variables
+- Working with a virtual python environment
 - The file- and folder structure of a Flask application
+- Using ChatGPT as a coding partner - working on prompting skills as well as critically evaluating suggestions and responses
+
