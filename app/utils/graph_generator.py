@@ -2,6 +2,8 @@ import matplotlib
 matplotlib.use('Agg')  # Set the backend to use Agg
 import matplotlib.pyplot as plt
 from matplotlib.animation import PillowWriter
+import matplotlib.animation as animation
+import subprocess
 import pandas as pd
 import numpy as np
 import os
@@ -18,14 +20,6 @@ def generate_graph():
     
     # Save the graph to a file
     plt.savefig(os.path.join('app', 'static', 'img', 'graph.png'))
-
-    # Alternatively, you could return the binary data
-    # and serve it directly without saving to a file
-    # import io
-    # buf = io.BytesIO()
-    # plt.savefig(buf, format='png')
-    # buf.seek(0)
-    # return buf.getvalue()
 
     plt.close()
 
@@ -156,7 +150,7 @@ def generate_weight_graph_gif(weight_data):
     metadata = dict(title="Movie", artist="SimonJ")
     writer = PillowWriter(fps=15, metadata=metadata)
 
-    fig = plt.figure() # empty figure
+    fig = plt.figure()
     l, = plt.plot([],[])
     plt.xlim(-0.5, len(weeks) -0.5) # Sets the x-axis limits to ensure it extends to all 11 weeks
     plt.ylim(min(plot_weights)-2, max(plot_weights)+2)
@@ -176,7 +170,7 @@ def generate_weight_graph_gif(weight_data):
             writer.grab_frame()
 
     plt.close()
-    
+
 
 if __name__=="__main__":
     weight_data = [0.0, 0.0, 63.5, 63.3, 63.1, 0.0, 64.0, 63.2, 63.0, 0.0, 0.0]
